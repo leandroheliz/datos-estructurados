@@ -6,25 +6,7 @@ const Faqs = () => {
     const [respuesta, setRespuesta] = useState('');
     const [preguntasFrecuentes, setPreguntasFrecuentes] = useState([]);
     const [preguntasFrecuentesSchema, setPreguntasFrecuentesSchema] = useState([]);
-
-
-    const agregarPreguntaFrecuente = () => {
-        // Verifica que tanto la pregunta como la respuesta estén presentes
-        if (pregunta && respuesta) {
-            // Crea un nuevo objeto con la pregunta y la respuesta
-            const nuevaPregunta = { pregunta, respuesta };
-
-            // Actualiza el estado de las preguntas frecuentes
-            setPreguntasFrecuentes([...preguntasFrecuentes, nuevaPregunta]);
-
-            // Limpia los campos del formulario después de agregar la pregunta
-            setPregunta('');
-            setRespuesta('');
-        } else {
-            alert('Por favor, completa tanto la pregunta como la respuesta.');
-        }
-    };
-
+    
     const agregarPreguntaFrecuente = () => {
         // Verifica que tanto la pregunta como la respuesta estén presentes
         if (pregunta && respuesta) {
