@@ -8,7 +8,6 @@ const Home = () => {
                 <title>Inicio | Datos Estructurados | Schemas SEO</title>
                 <link rel="canonical" href="https://schemas-seo.vercel.app" />
                 <meta name="description" content="Meta descripción de prueba - HOME" />
-                
             </Helmet>
 
             <div className="hero min-h-screen bg-base-200">

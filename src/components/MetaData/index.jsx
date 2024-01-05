@@ -6,11 +6,10 @@ const TuComponente = () => {
   const [descripcion, setDescripcion] = useState('Descripción Inicial');
 
   useEffect(() => {
-    // Simulación de carga de datos desde una API
     setTimeout(() => {
       setTitulo('Nuevo Título Dinámico');
       setDescripcion('Nueva Descripción Dinámica');
-    }, 2000); // Simula una carga de datos después de 2 segundos
+    }, 2000); 
   }, []);
 
   return (

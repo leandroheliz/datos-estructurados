@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet';
 
-const Faqs = () => {
-    const preguntasFrecuentesSchema = [
+const Productos = () => {
+    const productosSchema = [
         {
             "@type": "Question",
             "name": "Pregunta de prueba 1 LOREM",
@@ -38,7 +38,7 @@ const Faqs = () => {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "FAQPage",
-                        "mainEntity": preguntasFrecuentesSchema
+                        "mainEntity": productosSchema
                     })
                 }} />
             </Helmet>
@@ -46,15 +46,15 @@ const Faqs = () => {
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content text-center">
                     <div className="max-w-md">
-                        <h1 className="text-5xl font-bold">FAQs</h1>
-                        {preguntasFrecuentesSchema.map((pregunta, index) => (
+                        <h1 className="text-5xl font-bold">Productos</h1>
+                        {productosSchema.map((producto, index) => (
                             <div key={index} className="collapse collapse-plus bg-base-200">
                                 <input type="radio" name="my-accordion-3" />
                                 <div className="collapse-title text-xl font-medium">
-                                    {pregunta.name}
+                                    {producto.name}
                                 </div>
                                 <div className="collapse-content">
-                                    <p>{pregunta.acceptedAnswer.text}</p>
+                                    <p>{producto.acceptedAnswer.text}</p>
                                 </div>
                             </div>
                         ))}
@@ -65,4 +65,4 @@ const Faqs = () => {
     );
 }
 
-export default Faqs;
+export default Productos;
