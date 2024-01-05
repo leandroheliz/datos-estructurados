@@ -1,86 +1,69 @@
-import { Helmet } from "react-helmet"
-import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 const Faqs = () => {
-    const [pregunta, setPregunta] = useState('');
-    const [respuesta, setRespuesta] = useState('');
-    const [preguntasFrecuentes, setPreguntasFrecuentes] = useState([]);
-    const [preguntasFrecuentesSchema, setPreguntasFrecuentesSchema] = useState([]);
-    
-    const agregarPreguntaFrecuente = () => {
-        // Verifica que tanto la pregunta como la respuesta estén presentes
-        if (pregunta && respuesta) {
-          // Crea un nuevo objeto con la pregunta y la respuesta
-          const nuevaPregunta = { pregunta, respuesta };
-      
-          // Actualiza el estado de las preguntas frecuentes
-          setPreguntasFrecuentes([...preguntasFrecuentes, nuevaPregunta]);
-      
-          // Crea un nuevo objeto para el esquema de preguntas frecuentes
-          const nuevoEsquema = {
+    const preguntasFrecuentesSchema = [
+        {
             "@type": "Question",
-            "name": pregunta,
+            "name": "Pregunta de prueba 1 LOREM",
             "acceptedAnswer": {
-              "@type": "Answer",
-              "text": respuesta
+                "@type": "Answer",
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint labore doloribus. Nisi possimus, porro cupiditate vitae quos optio, reprehenderit non eligendi, expedita sint dolore odio cum harum modi inventore.Incidunt necessitatibus modi, dolore aspernatur hic explicabo eaque vero dolores in iure delectus! Debitis sit dolore doloribus rerum voluptates, cupiditate suscipit, reiciendis culpa enim laboriosam aspernatur ad nihil repudiandae aut. At laboriosam optio quod molestiae voluptates earum totam exercitationem eius quam in esse pariatur aperiam, porro hic mollitia, nostrum quis quibusdam, animi nobis Reprehenderit laudantium nulla quos! Animi, distinctio dicta. Vel neque voluptates."
             }
-          };
-      
-          // Actualiza el estado del esquema de preguntas frecuentes
-          setPreguntasFrecuentesSchema([...preguntasFrecuentesSchema, nuevoEsquema]);
-      
-          // Limpia los campos del formulario después de agregar la pregunta
-          setPregunta('');
-          setRespuesta('');
-        } else {
-          alert('Por favor, completa tanto la pregunta como la respuesta.');
+        },
+        {
+            "@type": "Question",
+            "name": "Pregunta de prueba 2 LOREM",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nisi possimus, porro cupiditate vitae quos optio, reprehenderit non eligendi, expedita sint dolore odio cum harum modi inventore.Incidunt necessitatibus modi, dolore aspernatur hic explicabo eaque vero dolores in iure delectus! Debitis sit dolore doloribus rerum voluptates, cupiditate suscipit, reiciendis culpa enim laboriosam aspernatur ad nihil repudiandae aut."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Pregunta de prueba 3 LOREM",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nisi possimus, porro cupiditate vitae quos optio, reprehenderit non eligendi, expedita sint dolore odio cum harum modi inventore.Incidunt necessitatibus modi, dolore aspernatur hic explicabo eaque vero dolores in iure delectus! Debitis sit dolore doloribus rerum voluptates, cupiditate suscipit, reiciendis culpa enim laboriosam aspernatur ad nihil repudiandae aut."
+            }
         }
-      };
-      
+    ];
+
     return (
-        <div>
+        <>
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>Frequently Asked Questions | Schemas SEO</title>
                 <link rel="canonical" href="https://schemas-seo.vercel.app/faqs" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": preguntasFrecuentesSchema
+                    })
+                }} />
             </Helmet>
-            <div>
-                <h2>Formulario de Preguntas Frecuentes</h2>
-                <div>
-                    <label htmlFor="inputPregunta">Pregunta:</label>
-                    <input
-                        type="text"
-                        id="inputPregunta"
-                        value={pregunta}
-                        onChange={(e) => setPregunta(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="inputRespuesta">Respuesta:</label>
-                    <input
-                        type="text"
-                        id="inputRespuesta"
-                        value={respuesta}
-                        onChange={(e) => setRespuesta(e.target.value)}
-                    />
-                </div>
-                <button onClick={agregarPreguntaFrecuente}>Agregar Pregunta Frecuente</button>
 
-                {/* Muestra las preguntas frecuentes agregadas */}
-                <div>
-                    <h3>Esquema de Preguntas Frecuentes</h3>
-                    <ul>
-                        {preguntasFrecuentes.map((pregunta, index) => (
-                            <li key={index}>
-                                <strong>Pregunta:</strong> {pregunta.pregunta}, <strong>Respuesta:</strong>{' '}
-                                {pregunta.respuesta}
-                            </li>
+            <div className="hero min-h-screen bg-base-200">
+                <div className="hero-content text-center">
+                    <div className="max-w-md">
+                        <h1 className="text-5xl font-bold">FAQs</h1>
+                        {/* Mapea preguntasFrecuentesSchema y muestra el contenido */}
+                        {preguntasFrecuentesSchema.map((pregunta, index) => (
+                            <div key={index} className="collapse collapse-plus bg-base-200">
+                                <input type="radio" name="my-accordion-3" />
+                                <div className="collapse-title text-xl font-medium">
+                                    {pregunta.name}
+                                </div>
+                                <div className="collapse-content">
+                                    <p>{pregunta.acceptedAnswer.text}</p>
+                                </div>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        </>
+    );
 }
 
-export default Faqs
+export default Faqs;
